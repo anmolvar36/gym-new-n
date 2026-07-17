@@ -47,7 +47,8 @@ app.use(
       "https://gym-speed-fitness.netlify.app",
       "https://speedfitness.live",
       "https://gym-mgt-0.netlify.app",
-      "https://gym-kiaan.netlify.app"
+      "https://gym-kiaan.netlify.app",
+      "https://gymsoftware.space"
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true
