@@ -163,7 +163,7 @@ export const bookClassService = async (memberId, scheduleId) => {
 
   /* 1️⃣ MAP userId → member.id */
   const [memberRows] = await pool.query(
-    "SELECT id FROM member WHERE userId = ? AND status = 'ACTIVE'",
+    "SELECT id FROM member WHERE userId = ? AND UPPER(status) = 'ACTIVE'",
     [memberId]
   );
 
@@ -332,7 +332,7 @@ export const getScheduledClassesWithBookingStatusService = async (
       FROM member
       WHERE id = ?
         AND adminId = ?
-        AND status = 'ACTIVE'
+        AND UPPER(status) = 'ACTIVE'
       `,
       [memberId, adminId]
     );
