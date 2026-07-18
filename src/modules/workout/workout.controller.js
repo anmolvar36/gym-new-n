@@ -27,7 +27,7 @@ export const getMemberWorkoutPlan = async (req, res, next) => {
   try {
     const memberId = parseInt(req.params.memberId);
     const plans = await getMemberWorkoutPlanService(memberId);
-    res.json({ success: true, plans });
+    res.json({ success: true, plans, data: plans });
   } catch (err) {
     next(err);
   }
