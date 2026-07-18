@@ -32,7 +32,7 @@ router.post(
  */
 router.get(
   "/member/:memberId",
-  verifyToken(["Staff", "Admin", "Superadmin", "Member"]),
+  verifyToken(),
   getMemberWorkoutPlan
 );
 
