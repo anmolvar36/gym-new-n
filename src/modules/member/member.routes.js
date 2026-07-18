@@ -43,7 +43,7 @@ router.get(
   listMembers
 );
 
-router.get("/renew/:adminId", verifyToken(["Superadmin", "Admin"]), getRenewalPreview);
+router.get("/renew/:adminId", verifyToken(["Superadmin", "Admin", "Member"]), getRenewalPreview);
 
 /** Get Member Detail */
 router.get(
