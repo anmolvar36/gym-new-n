@@ -33,6 +33,11 @@ export const verifyToken = (roles = []) => {
         if (!isAllowed && normalizedRoles.includes("STAFF") && staffRoles.includes(normalizedUserRole)) {
           isAllowed = true;
         }
+        if (!isAllowed && (normalizedRoles.includes("MEMBER") || normalizedRoles.includes("CUSTOMER"))) {
+          if (normalizedUserRole.includes("MEMBER") || normalizedUserRole.includes("CUSTOMER") || decoded.memberId || decoded.roleId === 4) {
+            isAllowed = true;
+          }
+        }
 
         if (!isAllowed) {
           throw { status: 403, message: "Access denied" };
