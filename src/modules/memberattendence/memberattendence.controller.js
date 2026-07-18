@@ -274,9 +274,9 @@ export const getAttendanceByMemberId = async (req, res, next) => {
     );
 
     if (rows.length === 0) {
-      return res.status(404).json({
-        success: false,
-        message: "No attendance found for this member",
+      return res.json({
+        success: true,
+        attendance: [],
       });
     }
 
