@@ -161,10 +161,10 @@ export const bookClassService = async (memberId, scheduleId) => {
    * ⚠️ memberId coming from frontend = userId
    */
 
-  /* 1️⃣ MAP userId → member.id */
+  /* 1️⃣ MAP userId/memberId → member.id */
   const [memberRows] = await pool.query(
-    "SELECT id FROM member WHERE userId = ? AND UPPER(status) = 'ACTIVE'",
-    [memberId]
+    "SELECT id FROM member WHERE userId = ? OR id = ?",
+    [memberId, memberId]
   );
 
   if (memberRows.length === 0) {
@@ -330,15 +330,13 @@ export const getScheduledClassesWithBookingStatusService = async (
       `
       SELECT id
       FROM member
-      WHERE id = ?
-        AND adminId = ?
-        AND UPPER(status) = 'ACTIVE'
+      WHERE id = ? OR userId = ?
       `,
-      [memberId, adminId]
+      [memberId, memberId]
     );
 
     if (memberRows.length > 0) {
-      validMemberId = memberId;
+      validMemberId = memberRows[0].id;
     }
   }
 
