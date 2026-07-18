@@ -342,12 +342,12 @@ export const superAdminCRMStatsService = async () => {
   // 4. 30-Day Trend Chart
   const [trendData] = await pool.query(
     `SELECT 
-      DATE_FORMAT(createdAt, '%Y-%m-%d') AS date,
+      DATE_FORMAT(MAX(createdAt), '%Y-%m-%d') AS date,
       COUNT(*) AS totalLeads,
       SUM(CASE WHEN status = 'Converted' THEN 1 ELSE 0 END) AS convertedLeads
      FROM leads
      WHERE createdAt >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND leadType = 'SAAS'
-     GROUP BY DATE_FORMAT(createdAt, '%Y-%m-%d')
+     GROUP BY DATE(createdAt)
      ORDER BY date ASC`
   );
 
