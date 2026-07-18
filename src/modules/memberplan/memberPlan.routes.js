@@ -11,9 +11,9 @@ import { verifyToken } from "../../middlewares/auth.js";
 
 const router = Router();
 
-router.get("/all", verifyToken(["Admin", "Superadmin", "receptionist"]), getMemberPlansnewss);
-router.get("/", verifyToken(["Admin", "Superadmin", "receptionist"]), getMemberPlans);
-router.get("/:id", verifyToken(["Admin", "Superadmin", "receptionist"]), getMemberPlan);
+router.get("/all", verifyToken(["Admin", "Superadmin", "receptionist", "Member"]), getMemberPlansnewss);
+router.get("/", verifyToken(["Admin", "Superadmin", "receptionist", "Member"]), getMemberPlans);
+router.get("/:id", verifyToken(["Admin", "Superadmin", "receptionist", "Member"]), getMemberPlan);
 
 router.post("/", verifyToken(["Admin", "Superadmin"]), createMemberPlan);
 router.put("/:adminId/:planId", verifyToken(["Admin", "Superadmin"]), updatePlan);
