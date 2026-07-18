@@ -39,7 +39,7 @@ router.put("/renew/:memberId", verifyToken(["Superadmin", "Admin", "receptionist
 /** List Members by Branch */
 router.get(
   "/branch/:branchId",
-  verifyToken(["Superadmin", "Admin", "Staff"]),
+  verifyToken(["Superadmin", "Admin", "Staff", "personaltrainer", "generaltrainer", "receptionist"]),
   listMembers
 );
 
